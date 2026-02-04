@@ -63,8 +63,3 @@
 <AppShell>
 	{@render children()}
 </AppShell>
-
-<!-- Demo Watermark -->
-<div style="position:fixed;bottom:8px;right:8px;background:rgba(0,0,0,0.7);color:#fff;padding:4px 12px;border-radius:4px;font-size:11px;z-index:9999;pointer-events:none;">
-	DEMO | lavescar.com.tr
-</div>
