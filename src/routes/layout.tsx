@@ -7,7 +7,12 @@ import {
   useStore,
   useVisibleTask$,
 } from "@builder.io/qwik";
-import { Link, useLocation, useNavigate } from "@builder.io/qwik-city";
+import {
+  Link,
+  type RequestHandler,
+  useLocation,
+  useNavigate,
+} from "@builder.io/qwik-city";
 import {
   BellIcon,
   Building2Icon,
@@ -29,7 +34,32 @@ import {
   loadPersistedDemoState,
   saveDemoState,
 } from "~/data/demo-state";
+import {
+  DEMO_ACCESS_COOKIE,
+  DEMO_ACCESS_ROUTE,
+  buildDemoAccessHref,
+  clearDemoAccessCookie,
+  readDemoAccessSession,
+  type DemoAccessSession,
+} from "~/data/demo-access";
 import { layoutCopy, type Locale, useLocale } from "~/data/i18n";
+
+export const onRequest: RequestHandler = ({ cookie, redirect, url }) => {
+  const pathname = url.pathname;
+  const isDemoAccessPath =
+    pathname === DEMO_ACCESS_ROUTE || pathname === `${DEMO_ACCESS_ROUTE}/`;
+  const isPublicRoute = pathname === "/" || isDemoAccessPath;
+
+  if (isPublicRoute) {
+    return;
+  }
+
+  if (cookie.get(DEMO_ACCESS_COOKIE)?.value) {
+    return;
+  }
+
+  throw redirect(302, buildDemoAccessHref(`${pathname}${url.search}`));
+};
 
 type NavKey = keyof typeof layoutCopy.en.nav;
 
@@ -60,12 +90,16 @@ export default component$(() => {
   const mobileMenuOpen = useSignal(false);
   const searchTerm = useSignal("");
   const demoData = useStore(createDemoState());
+  const demoSession = useSignal<DemoAccessSession | null>(null);
   const hydrated = useSignal(false);
   const copy = layoutCopy[locale.value];
 
   useContextProvider(demoStateContext, demoData);
 
   const isLandingRoute = location.url.pathname === "/";
+  const isDemoAccessRoute =
+    location.url.pathname === DEMO_ACCESS_ROUTE ||
+    location.url.pathname === `${DEMO_ACCESS_ROUTE}/`;
 
   const isActive = (path: string) =>
     location.url.pathname === path ||
@@ -84,6 +118,7 @@ export default component$(() => {
     if (persisted) {
       Object.assign(demoData, persisted);
     }
+    demoSession.value = readDemoAccessSession();
     hydrated.value = true;
   });
 
@@ -99,7 +134,27 @@ export default component$(() => {
     saveDemoState(demoData);
   });
 
-  if (isLandingRoute) {
+  // eslint-disable-next-line qwik/no-use-visible-task
+  useVisibleTask$(({ track }) => {
+    track(() => location.url.pathname);
+    track(() => location.url.search);
+
+    if (location.url.pathname === "/" || isDemoAccessRoute) {
+      return;
+    }
+
+    const session = readDemoAccessSession();
+    demoSession.value = session;
+
+    if (!session) {
+      clearDemoAccessCookie();
+      window.location.replace(
+        buildDemoAccessHref(`${location.url.pathname}${location.url.search}`),
+      );
+    }
+  });
+
+  if (isLandingRoute || isDemoAccessRoute) {
     return <Slot />;
   }
 
@@ -221,9 +276,11 @@ export default component$(() => {
             </div>
             <div class="min-w-0 flex-1">
               <p class="truncate text-sm font-medium text-slate-900">
-                John Doe
+                {demoSession.value?.name || "John Doe"}
               </p>
-              <p class="truncate text-xs text-slate-500">{copy.salesManager}</p>
+              <p class="truncate text-xs text-slate-500">
+                {demoSession.value?.organization || copy.salesManager}
+              </p>
             </div>
           </div>
         </div>

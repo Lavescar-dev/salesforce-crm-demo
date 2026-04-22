@@ -69,6 +69,7 @@ npm run deploy -- --project-name <cloudflare-pages-project> --branch preview
 ## Main Routes
 
 - `/` - Product landing page
+- `/demo-access` - Guided demo access layer
 - `/dashboard` - Sales dashboard
 - `/leads` - Lead list
 - `/leads/:id` - Lead detail
@@ -84,4 +85,5 @@ npm run deploy -- --project-name <cloudflare-pages-project> --branch preview
 
 - Mock data lives in `src/data/mock-data.ts`.
 - Shared shell/navigation lives in `src/routes/layout.tsx`.
+- The public intro now hands off through `/demo-access` before protected workspace routes open.
 - The dashboard now includes a revenue trend chart plus forecast tables for a more CRM-like 1:1 feel.

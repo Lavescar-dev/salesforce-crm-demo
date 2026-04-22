@@ -16,6 +16,7 @@ import {
   TrendingUpIcon,
   UsersIcon,
 } from "lucide-qwik";
+import { buildDemoAccessHref } from "~/data/demo-access";
 import { type Locale, useLocale } from "~/data/i18n";
 
 const dict = {
@@ -24,7 +25,7 @@ const dict = {
     navArch: "Architecture",
     navDocs: "Workspace",
     navLogin: "Search",
-    navInit: "Open Demo",
+    navInit: "Open Platform",
     heroTitle: "Sales Command Center.",
     heroSubtitle:
       "Keep pipeline health, forecast confidence, and near-term execution in one polished workspace.",
@@ -72,7 +73,7 @@ const dict = {
     healthFollowupDesc: "18 hot leads require attention",
     healthClosing: "Closing Soon",
     healthClosingDesc: "5 opportunities expected to close this month",
-    ctaPrimary: "Open live workspace",
+    ctaPrimary: "Open demo platform",
     ctaSecondary: "Review demo scope",
     featureOne: "Browser-persisted demo state",
     featureOneDesc:
@@ -96,7 +97,7 @@ const dict = {
     navArch: "Mimari",
     navDocs: "Workspace",
     navLogin: "Arama",
-    navInit: "Demoyu Aç",
+    navInit: "Platformu Aç",
     heroTitle: "Satış Komuta Merkezi.",
     heroSubtitle:
       "Pipeline sağlığını, tahmin güvenilirliğini ve yakın dönem operasyonları tek bir optimize arayüzde yönetin.",
@@ -144,7 +145,7 @@ const dict = {
     healthFollowupDesc: "18 sıcak lead ilgi bekliyor",
     healthClosing: "Yakın Kapanış",
     healthClosingDesc: "Bu ay 5 fırsatın kapanması bekleniyor",
-    ctaPrimary: "Canlı çalışma alanını aç",
+    ctaPrimary: "Demo platformunu aç",
     ctaSecondary: "Demo kapsamını gör",
     featureOne: "Tarayıcıda kalıcı demo state",
     featureOneDesc:
@@ -246,7 +247,7 @@ export default component$(() => {
             </p>
             <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Link
-                href="/dashboard"
+                href={buildDemoAccessHref("/dashboard")}
                 class="group inline-flex items-center justify-center gap-2 rounded-md bg-slate-950 px-5 py-3 text-sm font-semibold text-white shadow-xl shadow-slate-900/10 transition hover:-translate-y-0.5 hover:bg-slate-800"
               >
                 {t.ctaPrimary}
@@ -325,7 +326,7 @@ export default component$(() => {
             </p>
           </div>
           <Link
-            href="/dashboard"
+            href={buildDemoAccessHref("/dashboard")}
             class="group inline-flex shrink-0 items-center justify-center gap-2 rounded-md bg-white px-5 py-3 text-sm font-semibold text-slate-950 transition hover:-translate-y-0.5 hover:bg-blue-50"
           >
             {t.ctaPrimary}
@@ -361,7 +362,7 @@ export const Navbar = component$((props: { locale: Locale; t: Copy }) => {
             {props.t.navArch}
           </a>
           <Link
-            href="/dashboard"
+            href={buildDemoAccessHref("/dashboard")}
             class="transition-colors hover:text-slate-900"
           >
             {props.t.navDocs}
@@ -380,13 +381,13 @@ export const Navbar = component$((props: { locale: Locale; t: Copy }) => {
             {props.locale}
           </button>
           <Link
-            href="/search"
+            href={buildDemoAccessHref("/search")}
             class="hidden text-sm font-medium text-slate-600 transition hover:text-slate-900 sm:block"
           >
             {props.t.navLogin}
           </Link>
           <Link
-            href="/dashboard"
+            href={buildDemoAccessHref("/dashboard")}
             class="rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white shadow-sm transition-colors hover:bg-slate-800"
           >
             {props.t.navInit}
@@ -611,7 +612,7 @@ export const OpportunitiesTable = component$((props: { t: Copy }) => (
     <div class="mb-6 flex items-center justify-between">
       <h3 class="text-sm font-bold text-slate-900">{props.t.topOpps}</h3>
       <Link
-        href="/opportunities"
+        href={buildDemoAccessHref("/opportunities")}
         class="flex items-center gap-1 text-xs font-semibold text-blue-600 transition hover:text-blue-700"
       >
         {props.t.viewAll}

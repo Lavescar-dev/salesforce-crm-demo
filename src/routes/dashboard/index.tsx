@@ -296,7 +296,7 @@ export default component$(() => {
           value={`${leadConversionRate}%`}
           subtitle={
             locale.value === "tr"
-              ? `${qualifiedLeads} / ${totalLeads} lead niteliklendi`
+              ? `${totalLeads} lead'den ${qualifiedLeads}'u nitelikli`
               : `${qualifiedLeads} of ${totalLeads} leads qualified`
           }
           icon={TargetIcon}

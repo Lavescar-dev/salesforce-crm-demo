@@ -8,6 +8,7 @@ if (!baseUrl) {
 
 const routes = [
   "/",
+  "/demo-access?next=%2Fdashboard",
   "/dashboard",
   "/leads",
   "/leads/new",
