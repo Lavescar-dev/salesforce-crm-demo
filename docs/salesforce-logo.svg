@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">SalesForce logo</title>
+  <desc id="desc">A gold abstract mark made of four rounded vertical blocks.</desc>
+  <defs>
+    <linearGradient id="salesforce-fill" x1="24" y1="18" x2="71" y2="76" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFE27A" />
+      <stop offset="0.45" stop-color="#FFD43B" />
+      <stop offset="1" stop-color="#FFBE0B" />
+    </linearGradient>
+    <linearGradient id="salesforce-stroke" x1="20" y1="18" x2="74" y2="78" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF2B5" />
+      <stop offset="1" stop-color="#F59E0B" />
+    </linearGradient>
+    <filter id="salesforce-shadow" x="0" y="0" width="96" height="96" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#facc15" flood-opacity="0.18" />
+    </filter>
+  </defs>
+  <g filter="url(#salesforce-shadow)">
+    <path d="M27 18.5c0-2.485 2.015-4.5 4.5-4.5h9c2.485 0 4.5 2.015 4.5 4.5v34.2c0 1.904-1.203 3.6-3 4.227l-14.5 5.058c-2.91 1.016-5.95-1.145-5.95-4.227V18.5Z" fill="url(#salesforce-fill)" stroke="url(#salesforce-stroke)" stroke-width="1.6"/>
+    <path d="M47.4 27.5c0-2.356 1.809-4.316 4.157-4.504l7.885-.631c2.65-.212 4.958 1.878 4.958 4.537v23.537c0 1.929-1.23 3.642-3.06 4.26l-8.085 2.732c-2.913.984-5.855-1.182-5.855-4.257V27.5Z" fill="url(#salesforce-fill)" stroke="url(#salesforce-stroke)" stroke-width="1.6"/>
+    <path d="M65.8 35.8c0-2.485 2.015-4.5 4.5-4.5h6.9c2.485 0 4.5 2.015 4.5 4.5v20.4c0 2.082-1.42 3.895-3.442 4.394l-7.7 1.9c-2.848.703-5.558-1.452-5.558-4.394V35.8Z" fill="url(#salesforce-fill)" stroke="url(#salesforce-stroke)" stroke-width="1.6"/>
+    <path d="M44 58.8c0-2.018 1.361-3.781 3.309-4.292l7.892-2.07c2.829-.742 5.599 1.39 5.599 4.314V71c0 1.917-1.201 3.628-2.999 4.273l-7.892 2.829C47.001 79.145 44 76.994 44 73.899V58.8Z" fill="url(#salesforce-fill)" stroke="url(#salesforce-stroke)" stroke-width="1.6"/>
+  </g>
+</svg>
